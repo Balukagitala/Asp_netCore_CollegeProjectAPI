@@ -1,0 +1,876 @@
+2025-07-18 17:33:10.511 +05:30 [INF] User profile is available. Using 'C:\Users\KagithalaBalaJagan\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-18 17:33:10.802 +05:30 [INF] Now listening on: https://localhost:7221
+2025-07-18 17:33:10.803 +05:30 [INF] Now listening on: http://localhost:5067
+2025-07-18 17:33:10.903 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 17:33:10.904 +05:30 [INF] Hosting environment: Development
+2025-07-18 17:33:10.904 +05:30 [INF] Content root path: D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject
+2025-07-18 17:33:11.758 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/index.html - null null
+2025-07-18 17:33:12.038 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/index.html - 200 null text/html;charset=utf-8 289.3039ms
+2025-07-18 17:33:12.047 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-07-18 17:33:12.048 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-18 17:33:12.058 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 10.6309ms
+2025-07-18 17:33:12.101 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 53.9867ms
+2025-07-18 17:33:12.131 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-07-18 17:33:12.148 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 18.1502ms
+2025-07-18 17:33:32.046 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - application/json 120
+2025-07-18 17:33:32.064 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:33:32.106 +05:30 [INF] Route matched with {action = "CreateRoleMapping", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoleMapping(CollegeProject.Models.Roles.RoleControllerMappingDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 17:33:34.219 +05:30 [INF] Executed DbCommand (67ms) [Parameters=[@__roleControllerMapping_RoleId_0='?' (DbType = Int64), @__roleControllerMapping_ControllerName_1='?' (Size = 250) (DbType = AnsiString), @__roleControllerMapping_ActionName_2='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [RoleControllerMapping] AS [r]
+WHERE [r].[RoleId] = @__roleControllerMapping_RoleId_0 AND [r].[ControllerName] = @__roleControllerMapping_ControllerName_1 AND [r].[Status] = CAST(1 AS bit) AND [r].[ActionName] = @__roleControllerMapping_ActionName_2
+2025-07-18 17:33:36.682 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (Size = 150) (DbType = AnsiString), @p1='?' (Size = 250) (DbType = AnsiString), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int64), @p4='?' (DbType = Int64), @p5='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RoleControllerMapping] ([ActionName], [ControllerName], [IsAllowed], [RoleId], [RolesRoleId], [Status])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-07-18 17:33:36.717 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'CollegeProject.DbContexts.CollegeDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:f8e13664-63c2-453c-9a06-4b091a17d2d3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:f8e13664-63c2-453c-9a06-4b091a17d2d3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2025-07-18 17:33:36.835 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 17:33:36.865 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject) in 4756.1447ms
+2025-07-18 17:33:36.866 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:33:36.919 +05:30 [ERR] One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)
+2025-07-18 17:33:36.930 +05:30 [ERR]    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at ResultGetter(Object)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at CollegeProject.GlobalExceptions.CustomGlobalException.InvokeAsync(HttpContext httpContext) in D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject\GlobalExceptions\CustomGlobalException.cs:line 21
+2025-07-18 17:33:36.943 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - 500 null application/json; charset=utf-8 4897.6483ms
+2025-07-18 17:34:57.997 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - application/json 119
+2025-07-18 17:34:58.006 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:34:58.007 +05:30 [INF] Route matched with {action = "CreateRoleMapping", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoleMapping(CollegeProject.Models.Roles.RoleControllerMappingDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 17:34:58.047 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__roleControllerMapping_RoleId_0='?' (DbType = Int64), @__roleControllerMapping_ControllerName_1='?' (Size = 250) (DbType = AnsiString), @__roleControllerMapping_ActionName_2='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [RoleControllerMapping] AS [r]
+WHERE [r].[RoleId] = @__roleControllerMapping_RoleId_0 AND [r].[ControllerName] = @__roleControllerMapping_ControllerName_1 AND [r].[Status] = CAST(1 AS bit) AND [r].[ActionName] = @__roleControllerMapping_ActionName_2
+2025-07-18 17:35:00.966 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (Size = 150) (DbType = AnsiString), @p1='?' (Size = 250) (DbType = AnsiString), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int64), @p4='?' (DbType = Int64), @p5='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RoleControllerMapping] ([ActionName], [ControllerName], [IsAllowed], [RoleId], [RolesRoleId], [Status])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-07-18 17:35:00.969 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'CollegeProject.DbContexts.CollegeDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:f8e13664-63c2-453c-9a06-4b091a17d2d3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:f8e13664-63c2-453c-9a06-4b091a17d2d3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2025-07-18 17:35:02.928 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 17:35:02.931 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject) in 4923.8468ms
+2025-07-18 17:35:02.931 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:35:02.975 +05:30 [ERR] One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)
+2025-07-18 17:35:02.977 +05:30 [ERR]    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at ResultGetter(Object)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at CollegeProject.GlobalExceptions.CustomGlobalException.InvokeAsync(HttpContext httpContext) in D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject\GlobalExceptions\CustomGlobalException.cs:line 21
+2025-07-18 17:35:02.977 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - 500 null application/json; charset=utf-8 4980.4362ms
+2025-07-18 17:35:30.609 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - application/json 119
+2025-07-18 17:35:30.611 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:35:30.611 +05:30 [INF] Route matched with {action = "CreateRoleMapping", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoleMapping(CollegeProject.Models.Roles.RoleControllerMappingDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 17:35:30.711 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__roleControllerMapping_RoleId_0='?' (DbType = Int64), @__roleControllerMapping_ControllerName_1='?' (Size = 250) (DbType = AnsiString), @__roleControllerMapping_ActionName_2='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [RoleControllerMapping] AS [r]
+WHERE [r].[RoleId] = @__roleControllerMapping_RoleId_0 AND [r].[ControllerName] = @__roleControllerMapping_ControllerName_1 AND [r].[Status] = CAST(1 AS bit) AND [r].[ActionName] = @__roleControllerMapping_ActionName_2
+2025-07-18 17:35:43.327 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (Size = 150) (DbType = AnsiString), @p1='?' (Size = 250) (DbType = AnsiString), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int64), @p4='?' (DbType = Int64), @p5='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RoleControllerMapping] ([ActionName], [ControllerName], [IsAllowed], [RoleId], [RolesRoleId], [Status])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-07-18 17:35:43.328 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'CollegeProject.DbContexts.CollegeDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:f8e13664-63c2-453c-9a06-4b091a17d2d3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:f8e13664-63c2-453c-9a06-4b091a17d2d3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2025-07-18 17:35:49.087 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 17:35:49.094 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject) in 18483.2732ms
+2025-07-18 17:35:49.099 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:38:14.788 +05:30 [INF] Executed DbCommand (289ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [CollegeDB];
+2025-07-18 17:38:14.928 +05:30 [INF] Executed DbCommand (114ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [CollegeDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-07-18 17:38:14.951 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-18 17:38:14.954 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-18 17:38:14.971 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-18 17:38:15.011 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-18 17:38:15.018 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-18 17:38:15.019 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-18 17:38:15.029 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-18 17:38:15.034 +05:30 [INF] Applying migration '20250718120809_AddCollegeDB'.
+2025-07-18 17:38:15.053 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Registration] (
+    [UserId] Bigint NOT NULL IDENTITY,
+    [FirstName] varchar(50) NOT NULL,
+    [LastName] Varchar(50) NOT NULL,
+    [Email] varchar(50) NOT NULL,
+    [UserName] varchar(20) NOT NULL,
+    [Password] Varchar(50) NOT NULL,
+    [PhoneNumber] Varchar(20) NOT NULL,
+    [RoleId] Bigint NOT NULL,
+    [CreatedDate] datetime2 NULL,
+    [CreatedBy] bigint NULL,
+    [ModifiedDate] datetime2 NULL,
+    [ModifiedBy] bigint NULL,
+    CONSTRAINT [PK_Registration] PRIMARY KEY ([UserId])
+);
+2025-07-18 17:38:15.056 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Roles] (
+    [RoleId] bigint NOT NULL IDENTITY,
+    [RoleName] varchar(150) NOT NULL,
+    [Status] bit NOT NULL,
+    [CreatedDate] datetime2 NOT NULL,
+    [CreatedBy] bigint NOT NULL,
+    CONSTRAINT [PK_Roles] PRIMARY KEY ([RoleId])
+);
+2025-07-18 17:38:15.058 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [UserActivity] (
+    [Id] bigint NOT NULL IDENTITY,
+    [UserId] bigint NOT NULL,
+    [Token] nvarchar(max) NOT NULL,
+    [RoleId] bigint NOT NULL,
+    [ExpiryDate] datetime2 NOT NULL,
+    [CreatedDate] datetime2 NOT NULL,
+    [Status] bit NOT NULL,
+    CONSTRAINT [PK_UserActivity] PRIMARY KEY ([Id])
+);
+2025-07-18 17:38:15.062 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [RoleControllerMapping] (
+    [Id] bigint NOT NULL IDENTITY,
+    [RoleId] bigint NOT NULL,
+    [ControllerName] varchar(250) NOT NULL,
+    [ActionName] varchar(150) NOT NULL,
+    [IsAllowed] bit NOT NULL,
+    [Status] bit NOT NULL,
+    [RolesRoleId] bigint NOT NULL,
+    CONSTRAINT [PK_RoleControllerMapping] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_RoleControllerMapping_Roles_RolesRoleId] FOREIGN KEY ([RolesRoleId]) REFERENCES [Roles] ([RoleId]) ON DELETE CASCADE
+);
+2025-07-18 17:38:15.064 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_RoleControllerMapping_RolesRoleId] ON [RoleControllerMapping] ([RolesRoleId]);
+2025-07-18 17:38:15.069 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250718120809_AddCollegeDB', N'9.0.7');
+2025-07-18 17:38:15.075 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-18 17:38:36.407 +05:30 [INF] User profile is available. Using 'C:\Users\KagithalaBalaJagan\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-18 17:38:36.675 +05:30 [INF] Now listening on: https://localhost:7221
+2025-07-18 17:38:36.675 +05:30 [INF] Now listening on: http://localhost:5067
+2025-07-18 17:38:36.744 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 17:38:36.744 +05:30 [INF] Hosting environment: Development
+2025-07-18 17:38:36.744 +05:30 [INF] Content root path: D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject
+2025-07-18 17:38:37.413 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/index.html - null null
+2025-07-18 17:38:37.688 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-18 17:38:37.688 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-07-18 17:38:37.690 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/index.html - 200 null text/html;charset=utf-8 286.1121ms
+2025-07-18 17:38:37.696 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 9.3458ms
+2025-07-18 17:38:37.735 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 46.5477ms
+2025-07-18 17:38:37.767 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-07-18 17:38:37.787 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 20.6104ms
+2025-07-18 17:39:04.462 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - application/json 119
+2025-07-18 17:39:04.481 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:39:04.522 +05:30 [INF] Route matched with {action = "CreateRoleMapping", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoleMapping(CollegeProject.Models.Roles.RoleControllerMappingDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 17:39:06.791 +05:30 [INF] Executed DbCommand (50ms) [Parameters=[@__roleControllerMapping_RoleId_0='?' (DbType = Int64), @__roleControllerMapping_ControllerName_1='?' (Size = 250) (DbType = AnsiString), @__roleControllerMapping_ActionName_2='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [RoleControllerMapping] AS [r]
+WHERE [r].[RoleId] = @__roleControllerMapping_RoleId_0 AND [r].[ControllerName] = @__roleControllerMapping_ControllerName_1 AND [r].[Status] = CAST(1 AS bit) AND [r].[ActionName] = @__roleControllerMapping_ActionName_2
+2025-07-18 17:39:09.338 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 150) (DbType = AnsiString), @p1='?' (Size = 250) (DbType = AnsiString), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int64), @p4='?' (DbType = Int64), @p5='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RoleControllerMapping] ([ActionName], [ControllerName], [IsAllowed], [RoleId], [RolesRoleId], [Status])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-07-18 17:39:09.380 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'CollegeProject.DbContexts.CollegeDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:dbb5a220-ecde-4f33-8346-bf73a71a1cd3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:dbb5a220-ecde-4f33-8346-bf73a71a1cd3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2025-07-18 17:39:09.500 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 17:39:09.543 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject) in 5015.0509ms
+2025-07-18 17:39:09.544 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:39:10.928 +05:30 [ERR] One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)
+2025-07-18 17:39:10.940 +05:30 [ERR]    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at ResultGetter(Object)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at CollegeProject.GlobalExceptions.CustomGlobalException.InvokeAsync(HttpContext httpContext) in D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject\GlobalExceptions\CustomGlobalException.cs:line 21
+2025-07-18 17:39:10.953 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - 500 null application/json; charset=utf-8 6491.065ms
+2025-07-18 17:39:23.221 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRole - application/json 43
+2025-07-18 17:39:23.224 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRole (CollegeProject)'
+2025-07-18 17:39:23.230 +05:30 [INF] Route matched with {action = "CreateRole", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRole(CollegeProject.Models.Roles.RolesDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 17:39:25.908 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__roles_RoleName_0='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Roles] AS [r]
+WHERE [r].[RoleName] = @__roles_RoleName_0 AND [r].[Status] = CAST(1 AS bit)
+2025-07-18 17:39:26.820 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int64), @p1='?' (DbType = DateTime2), @p2='?' (Size = 150) (DbType = AnsiString), @p3='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Roles] ([CreatedBy], [CreatedDate], [RoleName], [Status])
+OUTPUT INSERTED.[RoleId]
+VALUES (@p0, @p1, @p2, @p3);
+2025-07-18 17:39:29.416 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 17:39:29.422 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRole (CollegeProject) in 6192.151ms
+2025-07-18 17:39:29.422 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRole (CollegeProject)'
+2025-07-18 17:39:29.423 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRole - 200 null application/json; charset=utf-8 6202.0045ms
+2025-07-18 17:39:37.354 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - application/json 119
+2025-07-18 17:39:37.355 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 17:39:37.356 +05:30 [INF] Route matched with {action = "CreateRoleMapping", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoleMapping(CollegeProject.Models.Roles.RoleControllerMappingDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 17:39:37.453 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__roleControllerMapping_RoleId_0='?' (DbType = Int64), @__roleControllerMapping_ControllerName_1='?' (Size = 250) (DbType = AnsiString), @__roleControllerMapping_ActionName_2='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [RoleControllerMapping] AS [r]
+WHERE [r].[RoleId] = @__roleControllerMapping_RoleId_0 AND [r].[ControllerName] = @__roleControllerMapping_ControllerName_1 AND [r].[Status] = CAST(1 AS bit) AND [r].[ActionName] = @__roleControllerMapping_ActionName_2
+2025-07-18 17:39:40.358 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (Size = 150) (DbType = AnsiString), @p1='?' (Size = 250) (DbType = AnsiString), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int64), @p4='?' (DbType = Int64), @p5='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RoleControllerMapping] ([ActionName], [ControllerName], [IsAllowed], [RoleId], [RolesRoleId], [Status])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-07-18 17:39:40.361 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'CollegeProject.DbContexts.CollegeDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:dbb5a220-ecde-4f33-8346-bf73a71a1cd3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:dbb5a220-ecde-4f33-8346-bf73a71a1cd3
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2025-07-18 17:39:43.721 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 17:39:43.726 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject) in 6370.4766ms
+2025-07-18 17:39:43.728 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 19:10:06.559 +05:30 [ERR] One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)
+2025-07-18 19:10:06.566 +05:30 [ERR]    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at ResultGetter(Object)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at CollegeProject.GlobalExceptions.CustomGlobalException.InvokeAsync(HttpContext httpContext) in D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject\GlobalExceptions\CustomGlobalException.cs:line 21
+2025-07-18 19:10:06.572 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - 500 null application/json; charset=utf-8 5444657.2172ms
+2025-07-18 19:10:22.682 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - application/json 119
+2025-07-18 19:10:22.684 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 19:10:22.684 +05:30 [INF] Route matched with {action = "CreateRoleMapping", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoleMapping(CollegeProject.Models.Roles.RoleControllerMappingDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 19:10:22.714 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__roleControllerMapping_RoleId_0='?' (DbType = Int64), @__roleControllerMapping_ControllerName_1='?' (Size = 250) (DbType = AnsiString), @__roleControllerMapping_ActionName_2='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [RoleControllerMapping] AS [r]
+WHERE [r].[RoleId] = @__roleControllerMapping_RoleId_0 AND [r].[ControllerName] = @__roleControllerMapping_ControllerName_1 AND [r].[Status] = CAST(1 AS bit) AND [r].[ActionName] = @__roleControllerMapping_ActionName_2
+2025-07-18 19:10:25.715 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (Size = 150) (DbType = AnsiString), @p1='?' (Size = 250) (DbType = AnsiString), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int64), @p4='?' (DbType = Int64), @p5='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RoleControllerMapping] ([ActionName], [ControllerName], [IsAllowed], [RoleId], [RolesRoleId], [Status])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-07-18 19:10:25.717 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'CollegeProject.DbContexts.CollegeDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:9113346d-74f9-4259-9af2-af4eae0fa678
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleControllerMapping_Roles_RolesRoleId". The conflict occurred in database "CollegeDB", table "dbo.Roles", column 'RoleId'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDataReader.Read()
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+ClientConnectionId:9113346d-74f9-4259-9af2-af4eae0fa678
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSet(Int32 startCommandIndex, RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.Consume(RelationalDataReader reader)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.<>c.<SaveChanges>b__112_0(DbContext _, ValueTuple`2 t)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2025-07-18 19:10:28.152 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 19:10:28.155 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject) in 5470.9851ms
+2025-07-18 19:10:28.156 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 19:10:29.270 +05:30 [ERR] One or more errors occurred. (An error occurred while saving the entity changes. See the inner exception for details.)
+2025-07-18 19:10:29.271 +05:30 [ERR]    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at ResultGetter(Object)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at CollegeProject.GlobalExceptions.CustomGlobalException.InvokeAsync(HttpContext httpContext) in D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject\GlobalExceptions\CustomGlobalException.cs:line 21
+2025-07-18 19:10:29.272 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - 500 null application/json; charset=utf-8 6591.311ms
+2025-07-18 19:19:39.457 +05:30 [INF] Executed DbCommand (340ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [CollegeDB];
+2025-07-18 19:19:39.636 +05:30 [INF] Executed DbCommand (129ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [CollegeDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-07-18 19:19:39.663 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-18 19:19:39.669 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-18 19:19:39.702 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-18 19:19:39.791 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-18 19:19:39.803 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-18 19:19:39.804 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-18 19:19:39.819 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-18 19:19:39.834 +05:30 [INF] Applying migration '20250718134917_AddCollegeDB'.
+2025-07-18 19:19:39.866 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Registration] (
+    [UserId] Bigint NOT NULL IDENTITY,
+    [FirstName] varchar(50) NOT NULL,
+    [LastName] Varchar(50) NOT NULL,
+    [Email] varchar(50) NOT NULL,
+    [UserName] varchar(20) NOT NULL,
+    [Password] Varchar(50) NOT NULL,
+    [PhoneNumber] Varchar(20) NOT NULL,
+    [RoleId] Bigint NOT NULL,
+    [CreatedDate] datetime2 NULL,
+    [CreatedBy] bigint NULL,
+    [ModifiedDate] datetime2 NULL,
+    [ModifiedBy] bigint NULL,
+    CONSTRAINT [PK_Registration] PRIMARY KEY ([UserId])
+);
+2025-07-18 19:19:39.869 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Roles] (
+    [RoleId] bigint NOT NULL IDENTITY,
+    [RoleName] varchar(150) NOT NULL,
+    [Status] bit NOT NULL,
+    [CreatedDate] datetime2 NOT NULL,
+    [CreatedBy] bigint NOT NULL,
+    CONSTRAINT [PK_Roles] PRIMARY KEY ([RoleId])
+);
+2025-07-18 19:19:39.871 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [UserActivity] (
+    [Id] bigint NOT NULL IDENTITY,
+    [UserId] bigint NOT NULL,
+    [Token] nvarchar(max) NOT NULL,
+    [RoleId] bigint NOT NULL,
+    [ExpiryDate] datetime2 NOT NULL,
+    [CreatedDate] datetime2 NOT NULL,
+    [Status] bit NOT NULL,
+    CONSTRAINT [PK_UserActivity] PRIMARY KEY ([Id])
+);
+2025-07-18 19:19:39.878 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [RoleControllerMapping] (
+    [Id] bigint NOT NULL IDENTITY,
+    [ControllerName] varchar(250) NOT NULL,
+    [ActionName] varchar(150) NOT NULL,
+    [IsAllowed] bit NOT NULL,
+    [Status] bit NOT NULL,
+    [RoleId] bigint NOT NULL,
+    CONSTRAINT [PK_RoleControllerMapping] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_RoleControllerMapping_Roles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [Roles] ([RoleId]) ON DELETE CASCADE
+);
+2025-07-18 19:19:39.880 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_RoleControllerMapping_RoleId] ON [RoleControllerMapping] ([RoleId]);
+2025-07-18 19:19:39.886 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250718134917_AddCollegeDB', N'9.0.7');
+2025-07-18 19:19:39.895 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-18 19:20:41.985 +05:30 [INF] User profile is available. Using 'C:\Users\KagithalaBalaJagan\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-18 19:20:42.521 +05:30 [INF] Now listening on: https://localhost:7221
+2025-07-18 19:20:42.522 +05:30 [INF] Now listening on: http://localhost:5067
+2025-07-18 19:20:42.728 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 19:20:42.728 +05:30 [INF] Hosting environment: Development
+2025-07-18 19:20:42.729 +05:30 [INF] Content root path: D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject
+2025-07-18 19:20:43.846 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/index.html - null null
+2025-07-18 19:20:44.324 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-07-18 19:20:44.324 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-18 19:20:44.325 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/index.html - 200 null text/html;charset=utf-8 486.7911ms
+2025-07-18 19:20:44.332 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 8.2666ms
+2025-07-18 19:20:44.396 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 71.8479ms
+2025-07-18 19:20:44.456 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-07-18 19:20:44.485 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 29.8608ms
+2025-07-18 19:20:57.060 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRole - application/json 43
+2025-07-18 19:20:57.081 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRole (CollegeProject)'
+2025-07-18 19:20:57.154 +05:30 [INF] Route matched with {action = "CreateRole", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRole(CollegeProject.Models.Roles.RolesDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 19:21:13.189 +05:30 [INF] Executed DbCommand (69ms) [Parameters=[@__roles_RoleName_0='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Roles] AS [r]
+WHERE [r].[RoleName] = @__roles_RoleName_0 AND [r].[Status] = CAST(1 AS bit)
+2025-07-18 19:21:13.505 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int64), @p1='?' (DbType = DateTime2), @p2='?' (Size = 150) (DbType = AnsiString), @p3='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Roles] ([CreatedBy], [CreatedDate], [RoleName], [Status])
+OUTPUT INSERTED.[RoleId]
+VALUES (@p0, @p1, @p2, @p3);
+2025-07-18 19:21:13.544 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 19:21:13.591 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRole (CollegeProject) in 16428.8851ms
+2025-07-18 19:21:13.592 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRole (CollegeProject)'
+2025-07-18 19:21:13.605 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRole - 200 null application/json; charset=utf-8 16544.8156ms
+2025-07-18 19:21:23.455 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRole - application/json 43
+2025-07-18 19:21:23.459 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRole (CollegeProject)'
+2025-07-18 19:21:23.459 +05:30 [INF] Route matched with {action = "CreateRole", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRole(CollegeProject.Models.Roles.RolesDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 19:21:23.510 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__roles_RoleName_0='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Roles] AS [r]
+WHERE [r].[RoleName] = @__roles_RoleName_0 AND [r].[Status] = CAST(1 AS bit)
+2025-07-18 19:21:23.520 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int64), @p1='?' (DbType = DateTime2), @p2='?' (Size = 150) (DbType = AnsiString), @p3='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Roles] ([CreatedBy], [CreatedDate], [RoleName], [Status])
+OUTPUT INSERTED.[RoleId]
+VALUES (@p0, @p1, @p2, @p3);
+2025-07-18 19:21:23.522 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 19:21:23.522 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRole (CollegeProject) in 62.7409ms
+2025-07-18 19:21:23.522 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRole (CollegeProject)'
+2025-07-18 19:21:23.523 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRole - 200 null application/json; charset=utf-8 69.0056ms
+2025-07-18 19:21:30.992 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRole - application/json 45
+2025-07-18 19:21:30.993 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRole (CollegeProject)'
+2025-07-18 19:21:30.993 +05:30 [INF] Route matched with {action = "CreateRole", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRole(CollegeProject.Models.Roles.RolesDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 19:21:31.141 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__roles_RoleName_0='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Roles] AS [r]
+WHERE [r].[RoleName] = @__roles_RoleName_0 AND [r].[Status] = CAST(1 AS bit)
+2025-07-18 19:21:31.146 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int64), @p1='?' (DbType = DateTime2), @p2='?' (Size = 150) (DbType = AnsiString), @p3='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Roles] ([CreatedBy], [CreatedDate], [RoleName], [Status])
+OUTPUT INSERTED.[RoleId]
+VALUES (@p0, @p1, @p2, @p3);
+2025-07-18 19:21:31.147 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 19:21:31.147 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRole (CollegeProject) in 153.8737ms
+2025-07-18 19:21:31.148 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRole (CollegeProject)'
+2025-07-18 19:21:31.148 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRole - 200 null application/json; charset=utf-8 155.7723ms
+2025-07-18 19:22:17.486 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - application/json 119
+2025-07-18 19:22:17.489 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 19:22:17.514 +05:30 [INF] Route matched with {action = "CreateRoleMapping", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoleMapping(CollegeProject.Models.Roles.RoleControllerMappingDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 19:22:17.920 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 19:22:17.933 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject) in 419.0021ms
+2025-07-18 19:22:17.935 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 19:22:39.292 +05:30 [ERR] One or more errors occurred. (An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'.)
+2025-07-18 19:22:39.345 +05:30 [ERR]    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at ResultGetter(Object)
+   at System.Text.Json.Serialization.Metadata.JsonPropertyInfo`1.GetMemberAndWriteJson(Object obj, WriteStack& state, Utf8JsonWriter writer)
+   at System.Text.Json.Serialization.Converters.ObjectDefaultConverter`1.OnTryWrite(Utf8JsonWriter writer, T value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.TryWrite(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.JsonConverter`1.WriteCore(Utf8JsonWriter writer, T& value, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at System.Text.Json.Serialization.Metadata.JsonTypeInfo`1.SerializeAsync(PipeWriter pipeWriter, T rootValue, Int32 flushThreshold, CancellationToken cancellationToken, Object rootValueBoxed)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at CollegeProject.GlobalExceptions.CustomGlobalException.InvokeAsync(HttpContext httpContext) in D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject\GlobalExceptions\CustomGlobalException.cs:line 21
+2025-07-18 19:22:39.348 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - 500 null application/json; charset=utf-8 21862.9627ms
+2025-07-18 19:23:00.858 +05:30 [INF] User profile is available. Using 'C:\Users\KagithalaBalaJagan\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-18 19:23:01.339 +05:30 [INF] Now listening on: https://localhost:7221
+2025-07-18 19:23:01.340 +05:30 [INF] Now listening on: http://localhost:5067
+2025-07-18 19:23:01.506 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 19:23:01.506 +05:30 [INF] Hosting environment: Development
+2025-07-18 19:23:01.506 +05:30 [INF] Content root path: D:\AspDotNetCore\NZWalks\CollegeProject\CollegeProject
+2025-07-18 19:23:02.431 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/index.html - null null
+2025-07-18 19:23:02.894 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/index.html - 200 null text/html;charset=utf-8 470.42ms
+2025-07-18 19:23:02.902 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-07-18 19:23:02.902 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-07-18 19:23:02.912 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 9.7689ms
+2025-07-18 19:23:02.983 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 81.1609ms
+2025-07-18 19:23:03.034 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-07-18 19:23:03.060 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 26.3479ms
+2025-07-18 19:23:48.910 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - application/json 119
+2025-07-18 19:23:48.940 +05:30 [INF] Executing endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 19:23:49.011 +05:30 [INF] Route matched with {action = "CreateRoleMapping", controller = "Roles"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRoleMapping(CollegeProject.Models.Roles.RoleControllerMappingDto) on controller CollegeProject.Controllers.RolesController (CollegeProject).
+2025-07-18 19:23:52.674 +05:30 [INF] Executed DbCommand (96ms) [Parameters=[@__roleControllerMapping_RoleId_0='?' (DbType = Int64), @__roleControllerMapping_ControllerName_1='?' (Size = 250) (DbType = AnsiString), @__roleControllerMapping_ActionName_2='?' (Size = 150) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [RoleControllerMapping] AS [r]
+WHERE [r].[RoleId] = @__roleControllerMapping_RoleId_0 AND [r].[ControllerName] = @__roleControllerMapping_ControllerName_1 AND [r].[Status] = CAST(1 AS bit) AND [r].[ActionName] = @__roleControllerMapping_ActionName_2
+2025-07-18 19:23:59.772 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (Size = 150) (DbType = AnsiString), @p1='?' (Size = 250) (DbType = AnsiString), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int64), @p4='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RoleControllerMapping] ([ActionName], [ControllerName], [IsAllowed], [RoleId], [Status])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-07-18 19:23:59.835 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Threading.Tasks.Task`1[[CollegeProject.Responses.ApiResponse, CollegeProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-18 19:23:59.905 +05:30 [INF] Executed action CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject) in 10874.3083ms
+2025-07-18 19:23:59.906 +05:30 [INF] Executed endpoint 'CollegeProject.Controllers.RolesController.CreateRoleMapping (CollegeProject)'
+2025-07-18 19:23:59.924 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7221/api/Roles/CreateRoleMapping - 200 null application/json; charset=utf-8 11016.0686ms

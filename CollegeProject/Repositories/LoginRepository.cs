@@ -27,8 +27,8 @@ namespace CollegeProject.Repositories
             {
                 var result = _context.Registration.FirstOrDefault(x =>
                             x.UserName == loginDetails.UserName && x.Password == loginDetails.Password);
-               
-                if(result == null)
+
+                if (result == null)
                 {
                     return null;
                 }
@@ -44,10 +44,11 @@ namespace CollegeProject.Repositories
                             activity.Status = false;
                         }
                     }
-                    _context.UpdateRange(existingUserActivity);
-                    await _context.SaveChangesAsync();
+                   //_context.UpdateRange(existingUserActivity);
+                   await _context.SaveChangesAsync();
                     var token = await CreateToken(result);
-                    if (token != null) {
+                    if (token != null)
+                    {
                         var userActivity = new UserActivity
                         {
                             UserId = result.UserId,
@@ -58,12 +59,12 @@ namespace CollegeProject.Repositories
                             Status = true
 
                         };
-                      
+
 
                         await _context.UserActivity.AddAsync(userActivity);
                         await _context.SaveChangesAsync();
                     }
-                    return ("Login Successfully Completed" +token.ToString());
+                    return ("Login Successfully Completed" + token.ToString());
                 }
             }
             return "Please Contact Administrator";
@@ -71,17 +72,19 @@ namespace CollegeProject.Repositories
         public async Task<String> CreateToken(Registration registration)
         {
             string role = _context.Roles
-                .Where(x=>x.RoleId==registration.RoleId)
-                .Select(r=>r.RoleName)
+                .Where(x => x.RoleId == registration.RoleId)
+                .Select(r => r.RoleName)
                 .FirstOrDefault();
             var claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Email, registration.Email));
-            claims.Add(new Claim(ClaimTypes.Role,role));
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            claims.Add(new Claim(ClaimTypes.Role, role));
+            claims.Add(new Claim("UserId", registration.UserId.ToString()));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, registration.UserName));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key is not configured.")));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(
                 _configuration["Jwt:Issuer"],
-                _configuration["Jwt:Audience"],
+                _configuration["Jwt:Audience"], 
                 claims,
                 expires: DateTime.Now.AddMinutes(15),
                 signingCredentials: credentials);

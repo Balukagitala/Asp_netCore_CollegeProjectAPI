@@ -27,6 +27,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("CollegeDbConnect
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -34,7 +36,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
 
-            ValidIssuer = (builder.Configuration["Jwt:Isssuer"]),
+            ValidIssuer = (builder.Configuration["Jwt:Issuer"]),
             ValidAudience = (builder.Configuration["Jwt:Audience"]),
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"]))
         };
@@ -43,7 +45,36 @@ builder.Services.AddScoped<IRegistrationRepository , RegistrationRepository>();
 builder.Services.AddScoped<ILoginRepository , LoginRepository>();
 builder.Services.AddScoped<IRoleRepository , RoleRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<CustomAuthorizationFilter>();
 builder.Services.AddAuthorization();
+//builder.Services.AddSwaggerGen(c =>
+//{
+//    c.SwaggerDoc("v1", new() { Title = "College Project ", Version = "v1" });
+//    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+//    {
+//        Name="Authorization",
+//        Type=Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+//        Scheme="Bearer",
+//        BearerFormat="JWT",
+//        In=Microsoft.OpenApi.Models.ParameterLocation.Header,
+//        Description="Enter JWt Token"
+//    });
+//    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+//    {
+//        {
+//            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+//            {
+//                Reference= new Microsoft.OpenApi.Models.OpenApiReference
+//                {
+//                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+//                    Id = "Bearer"
+//                }
+//            },
+//            Array.Empty<String>()
+//        }
+//    });
+//});
 
 var app = builder.Build();
 
@@ -53,6 +84,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<TokenValidatingMiddleware>();
 app.UseMiddleware<CustomGlobalException>();
 app.UseHttpsRedirection();
 

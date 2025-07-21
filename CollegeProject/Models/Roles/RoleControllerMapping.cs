@@ -19,6 +19,10 @@ namespace CollegeProject.Models.Roles
         public Boolean IsAllowed { get; set; }
         [Column(TypeName = "bit")]
         public Boolean Status {  get; set; }
+
+        public Boolean IsRedOnly { get; set; }
+
+        public Boolean IsWriteOnly { get; set; }
         public long RoleId { get; set; }
         [ForeignKey("RoleId")]
         public virtual Roles Roles { get; set; }

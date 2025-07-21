@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using CollegeProject.Models.Roles;
 using CollegeProject.Repositories.Interfaces;
+using CollegeProject.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -22,12 +24,13 @@ namespace CollegeProject.Controllers
 
         [HttpPost]
         [Route("CreateRole")]
+        [ServiceFilter(typeof(CustomAuthorizationFilter))]
         public async Task<IActionResult> CreateRole(RolesDto rolesDto)
         {
             if (ModelState.IsValid)
             {
                 var rolesmodel = _mapper.Map<Roles>(rolesDto);
-                var result = roleRepository.CreateRoleAsync(rolesmodel);
+                var result = await roleRepository.CreateRoleAsync(rolesmodel);
                 if (result == null)
                 {
                     return BadRequest();
@@ -36,8 +39,10 @@ namespace CollegeProject.Controllers
             }
             return BadRequest();
         }
+
         [HttpPost]
         [Route("CreateRoleMapping")]
+        [ServiceFilter(typeof(CustomAuthorizationFilter))]
         public async Task<IActionResult> CreateRoleMapping(RoleControllerMappingDto controllerMappingDto)
         {
             if (ModelState.IsValid)
@@ -51,7 +56,6 @@ namespace CollegeProject.Controllers
                 return Ok(result);
             }
             return BadRequest();
-
         }
     }
 }

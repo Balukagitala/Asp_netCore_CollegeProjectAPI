@@ -8,6 +8,10 @@ namespace CollegeProject.Models.Roles
         public string ControllerName { get; set; }
         public string ActionName { get; set; }
         public Boolean IsAllowed { get; set; }
+
+        public Boolean IsRedOnly { get; set; }
+
+        public Boolean IsWriteOnly { get; set; }
         public Boolean Status { get; set; }
 
     }

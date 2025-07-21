@@ -93,6 +93,12 @@ namespace CollegeProject.Migrations
                     b.Property<bool>("IsAllowed")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsRedOnly")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsWriteOnly")
+                        .HasColumnType("bit");
+
                     b.Property<long>("RoleId")
                         .HasColumnType("bigint");
 
